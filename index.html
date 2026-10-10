@@ -2,235 +2,286 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mizan · Workforce health, measured honestly</title>
-<meta name="description" content="Mizan is an independent workforce health diagnostic. Employees speak anonymously, leaders see the gap between what they believe and what their people experience, and every finding comes with a 30, 90 and 180 day plan.">
-<meta property="og:title" content="Mizan · Workforce health, measured honestly">
-<meta property="og:description" content="Your people know what needs to change. Mizan gives them a safe way to say it, and gives leaders a clear plan to act on it.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mizan · See the workforce risks leadership may be missing</title>
+<meta name="description" content="Mizan helps organisations uncover hidden workforce bottlenecks, understand perception gaps between leaders and employees, and turn findings into practical improvement plans.">
+<meta property="og:title" content="Mizan: see the workforce risks leadership may be missing">
+<meta property="og:description" content="Employee feedback, HR records and leadership predictions, compared in one diagnostic with a practical improvement plan.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mizanworkforce.com/">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/mizan-mark-32.png">
-<link rel="apple-touch-icon" href="/assets/mizan-mark-180.png">
 <meta property="og:image" content="https://mizanworkforce.com/assets/mizan-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/mizan-mark-32.png">
+<link rel="apple-touch-icon" href="/assets/mizan-mark-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+/* Layout: one long reading column with wide feature bands; story first, method and limits last. */
 :root{
   --bg:#FAF7F1; --surface:#FFFDF8; --beige:#EFE6D4; --line:#E2D8C3;
   --ink:#23211D; --ink-2:#5A5348; --muted:#6B6254;
-  --red:#CE1126; --gold:#B08A3E; --gold-hi:#D9AA4E; --night:#23211D; --night-ink:#F3EDE1;
-  --display:"Bricolage Grotesque",system-ui,sans-serif; --text:"IBM Plex Sans",system-ui,sans-serif;
+  --red:#CE1126; --red-soft:#F6E3E3; --gold:#B08A3E; --gold-hi:#D9AA4E;
+  --night:#23211D; --night-ink:#F3EDE1; --night-2:#CFC6B5; --night-line:#4A443A;
+  --good:#3F7A4F; --warn:#B07A1E;
+  --display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --wrap:1120px; --gut:clamp(16px,4vw,40px);
+  color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#171512; --surface:#211E19; --beige:#2B2720; --line:#3A352C;
-  --ink:#EFE9DD; --ink-2:#C9C0AF; --muted:#A79F90; --red:#EA5A63; --night:#0F0E0C;
+  --ink:#EFE9DD; --ink-2:#C9C0AF; --muted:#A79F90; --red:#EA5A63; --red-soft:#3A2224;
+  --night:#0F0E0C; --good:#7DBB8C; --warn:#E0B060; color-scheme:dark;
 }}
-:root[data-theme="dark"]{--bg:#171512;--surface:#211E19;--beige:#2B2720;--line:#3A352C;--ink:#EFE9DD;--ink-2:#C9C0AF;--muted:#A79F90;--red:#EA5A63;--night:#0F0E0C}
+:root[data-theme="dark"]{--bg:#171512;--surface:#211E19;--beige:#2B2720;--line:#3A352C;--ink:#EFE9DD;--ink-2:#C9C0AF;--muted:#A79F90;--red:#EA5A63;--red-soft:#3A2224;--night:#0F0E0C;--good:#7DBB8C;--warn:#E0B060;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--text);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:3px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
-h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:0}
-h2{font-size:clamp(30px,4.4vw,48px);max-width:18ch}
-h3{font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
+h2{font-size:clamp(30px,4.4vw,48px);max-width:20ch}
+h3{font-size:21px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
 p{margin:0}
-.lede{font-size:clamp(18px,2vw,21px);color:var(--ink-2);max-width:56ch}
-.btn{display:inline-block;font:600 16px/1 var(--text);padding:16px 22px;border-radius:6px;text-decoration:none;border:2px solid var(--red);background:var(--red);color:#fff}
-.btn:hover{filter:brightness(.92)}
+.lede{font-size:clamp(18px,2vw,21px);color:var(--ink-2);max-width:58ch}
+.kicker{font:500 15px/1.4 var(--text);color:var(--red);margin-bottom:16px}
+section{padding-block:clamp(64px,9vw,120px)}
+.btn{display:inline-block;font:600 16px/1 var(--text);padding:15px 22px;border-radius:6px;text-decoration:none;border:2px solid var(--red);background:var(--red);color:#fff;cursor:pointer}
+.btn:hover{filter:brightness(.93)}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{border-color:var(--ink);filter:none}
-section{padding:clamp(72px,10vw,128px) 0}
-.kicker{font:500 15px/1.4 var(--text);color:var(--red);margin-bottom:18px}
+.tag{display:inline-block;font:500 13px/1 var(--text);color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:5px 10px;background:var(--surface)}
+.tag.ill{color:var(--red);border-color:color-mix(in srgb,var(--red) 45%,var(--line))}
+.num{font-variant-numeric:tabular-nums}
 
 /* header */
-header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 22px/1 var(--display);letter-spacing:.02em}
-.brand img{height:42px;width:auto;display:block}
-nav{display:flex;gap:26px;align-items:center}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center}
+.brand img{height:40px;width:auto}
+.logo-dark{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo-light{display:none}:root:not([data-theme="light"]) .logo-dark{display:block}}
+:root[data-theme="dark"] .logo-light{display:none} :root[data-theme="dark"] .logo-dark{display:block}
+nav{display:flex;gap:24px;align-items:center}
 nav a{text-decoration:none;color:var(--ink-2);font-size:15px}
 nav a:hover{color:var(--ink)}
 nav .btn{padding:11px 16px;font-size:15px;color:#fff}
-@media (max-width:820px){nav a:not(.btn){display:none}}
+@media (max-width:860px){nav a:not(.btn){display:none}}
+@media (max-width:480px){nav .btn .wide{display:none}.brand img{height:32px}}
 
 /* hero */
-.hero{padding:clamp(56px,8vw,96px) 0 clamp(64px,9vw,112px)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
-.hero h1{font-size:clamp(42px,6.6vw,80px);max-width:12ch}
-.hero .lede{margin:26px 0 34px}
-.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
-.hero .note{margin-top:22px;font-size:15px;color:var(--muted)}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.hero{position:relative;overflow:hidden;padding-block:clamp(56px,8vw,112px) clamp(64px,9vw,128px)}
+.hero-img{position:absolute;inset:0;background:url("/assets/mizan-hero.jpg") right center/cover no-repeat}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 94%,transparent) 44%,color-mix(in srgb,var(--bg) 0%,transparent) 70%)}
+.hero .wrap{position:relative;display:block}
+.hero .wrap>div{max-width:540px}
+.hero .lede{max-width:30em}
+.silence .scale{margin-top:32px}
+@media (max-width:900px){.hero-img{background-position:70% center;opacity:.16}.hero-img::after{background:none}}
+.hero h1{font-size:clamp(38px,5.6vw,68px);max-width:15ch}
+.hero .lede{margin:24px 0 32px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
 
-.scale{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 24px 22px}
+.scale{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px}
+.scale .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;font-size:14px;color:var(--muted)}
 .scale svg{width:100%;height:auto;display:block}
-.scale figcaption{font-size:14px;color:var(--muted);margin-top:14px;line-height:1.5}
-.beam{transform-origin:200px 92px;transform:rotate(0deg);transition:transform 1.6s cubic-bezier(.3,1.4,.5,1) .5s}
+.scale figcaption{font-size:14px;color:var(--muted);margin-top:12px;line-height:1.5}
+.beam,.pan-l,.pan-r{transition:transform 1.6s cubic-bezier(.3,1.4,.5,1) .4s}
+.beam{transform-origin:200px 92px}
 .tilted .beam{transform:rotate(-9deg)}
-.pan-l{transition:transform 1.6s cubic-bezier(.3,1.4,.5,1) .5s}
-.pan-r{transition:transform 1.6s cubic-bezier(.3,1.4,.5,1) .5s}
 .tilted .pan-l{transform:translateY(20px)}
 .tilted .pan-r{transform:translateY(-20px)}
-@media (prefers-reduced-motion:reduce){.beam,.pan-l,.pan-r{transition:none}}
-.svg-ink{fill:var(--ink)} .svg-line{stroke:var(--ink)} .svg-muted{fill:var(--muted)}
-.svg-gold{fill:var(--gold)} .svg-red{fill:var(--red)}
+.s-ink{fill:var(--ink)} .s-line{stroke:var(--ink)} .s-muted{fill:var(--muted)} .s-gold{fill:var(--gold)} .s-red{fill:var(--red)}
 
 /* silence */
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,80px)}
+.split>*{min-width:0}
+@media (max-width:820px){.split{grid-template-columns:1fr}}
+.rule-list{list-style:none;margin:0;padding:0}
+.rule-list li{padding:20px 0;border-top:1px solid var(--line)}
+.rule-list li:first-child{border-top:0;padding-top:4px}
+.rule-list h3{margin-bottom:6px}
+.rule-list p{color:var(--ink-2)}
 .silence{border-top:1px solid var(--line)}
-.silence .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,80px)}
-.reasons{list-style:none;margin:0;padding:0}
-.reasons li{padding:22px 0;border-top:1px solid var(--line)}
-.reasons li:first-child{border-top:0;padding-top:4px}
-.reasons h3{margin-bottom:6px}
-.reasons p{color:var(--ink-2)}
-@media (max-width:820px){.silence .wrap{grid-template-columns:1fr}}
 
-/* cost */
-.cost{background:var(--beige)}
-.cost h2{max-width:20ch}
-.cost .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;margin-top:44px}
-.cost .item{padding:22px 0;border-top:2px solid var(--ink)}
-.cost .item p{color:var(--ink-2);margin-top:6px;max-width:44ch}
-@media (max-width:720px){.cost .grid{grid-template-columns:1fr}}
+/* three sources */
+.sources{background:var(--beige)}
+.src-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-top:2px solid var(--ink)}
+.src{padding:24px 24px 4px 0}
+.src+.src{padding-left:24px;border-left:1px solid color-mix(in srgb,var(--ink) 18%,transparent)}
+.src .who{font-size:14px;color:var(--muted);margin:6px 0 12px}
+.src p{color:var(--ink-2);font-size:16px}
+.src .catches{margin-top:12px;font-size:15px;color:var(--ink)}
+@media (max-width:820px){.src-grid{grid-template-columns:1fr}.src,.src+.src{padding:22px 0;border-left:0;border-top:1px solid color-mix(in srgb,var(--ink) 18%,transparent)}}
+.converge{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.converge div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:15px}
+.converge b{display:block;font:600 16px/1.3 var(--display);margin-bottom:4px}
+@media (max-width:820px){.converge{grid-template-columns:1fr}}
 
-/* why */
-.why h2{margin-bottom:18px}
-.pillars{margin-top:48px;display:grid;gap:0}
-.pillar{display:grid;grid-template-columns:240px 1fr;gap:32px;padding:30px 0;border-top:1px solid var(--line)}
-.pillar h3{font-size:24px}
-.pillar p{color:var(--ink-2);max-width:62ch}
-.pillar p+p{margin-top:10px}
-@media (max-width:720px){.pillar{grid-template-columns:1fr;gap:8px}}
+/* report */
+.report-sec{border-top:1px solid var(--line)}
+.report-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.report-head .note{font-size:15px;color:var(--muted);max-width:46ch}
+.report{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.r-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:18px 22px;border-bottom:1px solid var(--line)}
+.r-top b{font:600 17px/1.3 var(--display)}
+.tabs{display:flex;gap:2px;padding:0 14px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{font:500 15px/1 var(--text);background:none;border:0;border-bottom:3px solid transparent;color:var(--ink-2);padding:15px 10px;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
+.panel{padding:24px 22px}
+.sum{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.sum>*{min-width:0}
+@media (max-width:700px){.sum{grid-template-columns:1fr}}
+.big{font:800 72px/1 var(--display);letter-spacing:-.03em}
+.big small{font:500 18px var(--text);color:var(--muted);letter-spacing:0}
+.rating{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.grade{font:800 22px/1 var(--display);width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:var(--beige)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.facts div{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.facts span{display:block;font-size:13px;color:var(--muted)}
+.facts b{font:600 20px/1.3 var(--display)}
+.flag{margin-top:14px;padding:12px 14px;border-left:4px solid var(--red);background:var(--red-soft);font-size:15px;border-radius:0 8px 8px 0}
+.flag b{margin-right:4px}
+.cap{margin-top:16px;font-size:14px;color:var(--muted)}
+.dimtable{width:100%;border-collapse:collapse;font-size:15px}
+.dimtable th{font:500 13px var(--text);color:var(--muted);text-align:left;padding:8px 8px;border-bottom:1px solid var(--line)}
+.dimtable td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.dimtable tr.sel td{background:color-mix(in srgb,var(--gold) 12%,transparent)}
+.dimtable button{all:unset;cursor:pointer;font-weight:500}
+.dimtable button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.track{height:8px;background:var(--beige);border-radius:4px;overflow:hidden;min-width:80px}
+.track i{display:block;height:100%;background:var(--gold);border-radius:4px}
+.track i.risk{background:var(--red)}
+.tw{overflow-x:auto}
+.detail{margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.detail>*{min-width:0}
+.detail h4{margin:0 0 6px;font:600 15px var(--text)}
+.detail p{font-size:15px;color:var(--ink-2)}
+@media (max-width:700px){.detail{grid-template-columns:1fr}}
+.gap-row{display:grid;grid-template-columns:minmax(120px,1.1fr) 2fr 56px;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.gap-bar{position:relative;height:16px}
+.gap-bar .base{position:absolute;inset:7px 0;background:var(--beige);border-radius:2px}
+.gap-bar .span{position:absolute;top:5px;height:6px;background:color-mix(in srgb,var(--red) 35%,transparent)}
+.gap-bar .dot{position:absolute;top:2px;width:12px;height:12px;border-radius:50%;transform:translateX(-50%)}
+.dot.emp{background:var(--red)} .dot.lead{background:var(--ink);border:2px solid var(--surface)}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.gap-val{text-align:right;font-weight:600}
+.gap-val.big-gap{color:var(--red)}
+.ev{display:inline-block;font-size:13px;border-radius:12px;padding:3px 9px;border:1px solid var(--line)}
+.ev.y{color:var(--good)} .ev.p{color:var(--warn)} .ev.n{color:var(--red)}
+.heat td.c{text-align:center;font-weight:600}
+.heat td.c span{display:inline-block;min-width:44px;padding:4px 0;border-radius:6px}
+.lvl-note{margin-top:14px;font-size:14px;color:var(--muted)}
 
-/* change timeline */
-.change{background:var(--night);color:var(--night-ink);position:relative}
-.change::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red)}
-.change .kicker{color:var(--gold-hi)}
-.change .lede{color:#CFC6B5;margin-top:18px}
-.timeline{list-style:none;margin:52px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:t}
-.timeline li{border-top:3px solid var(--gold-hi);padding-top:20px}
-.timeline .when{font:800 44px/1 var(--display);color:var(--gold-hi);letter-spacing:-.02em}
-.timeline .when small{font:500 16px var(--text);color:#CFC6B5;margin-left:6px;letter-spacing:0}
-.timeline h3{color:var(--night-ink);margin:14px 0 8px}
-.timeline p{color:#CFC6B5}
-@media (max-width:820px){.timeline{grid-template-columns:1fr}}
-.gets{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px;padding-top:36px;border-top:1px solid #4A443A}
-.gets h3{font-size:18px;color:var(--night-ink);margin-bottom:8px}
-.gets p{color:#CFC6B5;font-size:16px}
-@media (max-width:820px){.gets{grid-template-columns:1fr}}
-
-/* anywhere */
-.anywhere .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
-.anywhere ul{margin:0;padding:0;list-style:none}
-.anywhere li{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:16px}
-.anywhere li b{min-width:150px;font-weight:600}
-.anywhere li span{color:var(--ink-2)}
-@media (max-width:820px){.anywhere .wrap{grid-template-columns:1fr}.anywhere li{flex-direction:column;gap:2px}}
-
-/* founding partners */
-.partners .panel{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--red);border-radius:14px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,56px)}
-.partners h2{max-width:16ch}
-.partners .lede{margin-top:16px}
-.checks{list-style:none;margin:0;padding:0}
-.checks li{padding:12px 0 12px 34px;position:relative;border-top:1px solid var(--line)}
-.checks li:first-child{border-top:0}
-.checks li::before{content:"";position:absolute;left:0;top:17px;width:18px;height:10px;border-left:3px solid var(--gold);border-bottom:3px solid var(--gold);transform:rotate(-45deg)}
-.partners .cta{margin-top:26px}
-@media (max-width:820px){.partners .panel{grid-template-columns:1fr}}
-.verify{margin-top:56px}
-.verify h3{margin-bottom:18px}
-.verify .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.verify p{color:var(--ink-2);font-size:16px}
-.verify b{display:block;color:var(--ink);margin-bottom:4px}
-@media (max-width:820px){.verify .grid{grid-template-columns:1fr}}
+/* plan */
+.plan{background:var(--night);color:var(--night-ink);position:relative}
+.plan::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red)}
+.plan .kicker{color:var(--gold-hi)}
+.plan .lede{color:var(--night-2);margin-top:16px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px}
+.tiers>div{border-top:3px solid var(--gold-hi);padding-top:18px}
+.tiers .when{font:800 42px/1 var(--display);color:var(--gold-hi)}
+.tiers .when small{font:500 16px var(--text);color:var(--night-2);margin-left:6px}
+.tiers h3{color:var(--night-ink);margin:12px 0 6px}
+.tiers p{color:var(--night-2);font-size:16px}
+.tiers .own{margin-top:10px;font-size:14px;color:var(--night-ink)}
+@media (max-width:820px){.tiers{grid-template-columns:1fr}}
+.plan-ex{margin-top:56px}
+.plan-ex .hdr{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.plan-ex h3{color:var(--night-ink)}
+.plan-ex .tag{background:transparent;color:var(--gold-hi);border-color:var(--night-line)}
+.ptable{width:100%;border-collapse:collapse;font-size:15px;color:var(--night-ink)}
+.ptable th{font:500 13px var(--text);color:var(--night-2);text-align:left;padding:10px 10px;border-bottom:1px solid var(--night-line)}
+.ptable td{padding:12px 10px;border-bottom:1px solid var(--night-line);vertical-align:top}
+.ptable td.t{white-space:nowrap;color:var(--gold-hi);font-weight:600}
+.plan .fine{color:var(--night-2);font-size:14px;margin-top:14px}
 
 /* founder */
 .founder{border-top:1px solid var(--line)}
-.founder .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,80px)}
-.founder-body p+p{margin-top:16px;color:var(--ink-2);max-width:60ch}
+.founder .body p+p{margin-top:16px;color:var(--ink-2);max-width:60ch}
 .founder .sign{font-size:15px;color:var(--muted)}
-@media (max-width:820px){.founder .wrap{grid-template-columns:1fr}}
 
 /* method */
-.method{border-top:1px solid var(--line)}
-.method .intro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:end}
-@media (max-width:820px){.method .intro{grid-template-columns:1fr}}
-.steps{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s}
+.method{background:var(--beige)}
+.steps{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s}
 .steps li{counter-increment:s;padding-top:16px;border-top:1px solid var(--ink)}
 .steps li::before{content:counter(s);font:800 15px/1 var(--display);color:var(--red);display:block;margin-bottom:10px}
 .steps h3{font-size:18px;margin-bottom:6px}
 .steps p{font-size:16px;color:var(--ink-2)}
 @media (max-width:820px){.steps{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.steps{grid-template-columns:1fr}}
-.detail{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,6vw,72px);margin-top:72px}
-@media (max-width:820px){.detail{grid-template-columns:1fr}}
-.dims{columns:2;column-gap:32px;margin:18px 0 0;padding:0;list-style:none}
-.dims li{break-inside:avoid;padding:9px 0;border-bottom:1px solid var(--line);font-size:16px}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);margin-top:64px}
+.m-grid>*{min-width:0}
+@media (max-width:820px){.m-grid{grid-template-columns:1fr}}
+.dims{columns:2;column-gap:28px;margin:14px 0 0;padding:0;list-style:none}
+.dims li{break-inside:avoid;padding:8px 0;border-bottom:1px solid var(--line);font-size:16px}
+.dims li small{color:var(--muted);font-size:13px;margin-left:6px}
 @media (max-width:520px){.dims{columns:1}}
-.bands{margin-top:18px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
-.band{display:grid;grid-template-columns:44px 90px 1fr;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid var(--line);font-size:15px}
+.score-steps{margin:14px 0 0;padding-left:20px;color:var(--ink-2)}
+.score-steps li{margin:6px 0}
+.bands{margin-top:14px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.band{display:grid;grid-template-columns:40px 96px 1fr;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid var(--line);font-size:15px}
 .band:first-child{border-top:0}
-.band b{font:800 20px/1 var(--display)}
+.band b{font:800 19px/1 var(--display)}
 .band span:last-child{color:var(--ink-2)}
-.fine{font-size:14px;color:var(--muted);margin-top:14px}
+.fine{font-size:14px;color:var(--muted);margin-top:12px}
+.limits{margin-top:64px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(22px,4vw,36px)}
+.limits ul{margin:14px 0 0;padding-left:20px;color:var(--ink-2)}
+.limits li{margin:8px 0}
 
-/* sample report */
-.sample{background:var(--beige)}
-.sample .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,72px);align-items:center}
-@media (max-width:820px){.sample .wrap{grid-template-columns:1fr}}
-.report{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
-.report header{all:unset;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.tag{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px}
-.score{font:800 64px/1 var(--display);margin:14px 0 2px;letter-spacing:-.03em}
-.score small{font:500 18px var(--text);color:var(--muted);letter-spacing:0}
-.rating{font-size:15px;color:var(--ink-2)}
-.row{display:grid;grid-template-columns:1fr 44px;gap:4px 12px;margin-top:14px;font-size:15px}
-.track{grid-column:1/-1;height:8px;background:var(--beige);border-radius:4px;overflow:hidden}
-.track i{display:block;height:100%;background:var(--gold);border-radius:4px}
-.track i.risk{background:var(--red)}
-.row .v{text-align:right;font-weight:600}
-.flag{margin-top:18px;padding:12px 14px;border-left:4px solid var(--red);background:color-mix(in srgb,var(--red) 7%,transparent);font-size:15px}
+/* privacy */
+.privacy .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);margin-top:40px}
+.privacy .cols>div{border-top:2px solid var(--ink);padding-top:18px}
+.privacy .cols>*{min-width:0}
+.privacy ul{margin:10px 0 0;padding-left:20px;color:var(--ink-2)}
+.privacy li{margin:7px 0}
+@media (max-width:820px){.privacy .cols{grid-template-columns:1fr}}
 
 /* faq */
-.faq .wrap{max-width:820px}
+.faq{border-top:1px solid var(--line)}
+.faq .wrap{max-width:860px}
 .faq h2{margin-bottom:28px}
-details{border-top:1px solid var(--line);padding:18px 0}
+details{border-top:1px solid var(--line);padding:16px 0}
 details:last-of-type{border-bottom:1px solid var(--line)}
 summary{cursor:pointer;font:600 19px/1.35 var(--display);list-style:none;display:flex;justify-content:space-between;gap:16px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";font-weight:400;color:var(--red);font-size:24px;line-height:1}
-details[open] summary::after{content:"−"}
+details[open] summary::after{content:"\2212"}
 details p{margin-top:10px;color:var(--ink-2);max-width:66ch}
 
-/* closing */
-.closing{text-align:left;padding-bottom:clamp(80px,10vw,120px)}
-.closing h2{font-size:clamp(34px,5.4vw,64px);max-width:16ch}
-.closing .lede{margin:22px 0 32px}
-footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:14px;color:var(--muted)}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* contact */
+.contact{background:var(--surface);border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(32px,5vw,58px);max-width:18ch}
+.contact .lede{margin:20px 0 28px}
+.mailbox{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px;font-size:15px;color:var(--ink-2)}
+.mailbox code{font:500 16px var(--text);color:var(--ink);background:var(--beige);padding:8px 12px;border-radius:6px;user-select:all}
+.mailbox button{font:500 14px var(--text);padding:8px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start}
+footer .flogo{display:flex;margin-bottom:10px}
+footer .flogo img{height:30px;width:auto}
+footer .links{display:flex;gap:20px}
 footer a{color:var(--ink-2)}
-.foot-links{display:flex;gap:20px;align-items:flex-start}
-.foot-brand{display:flex;flex-direction:column;gap:12px}
-.foot-brand img{height:30px;width:auto;display:block}
 </style>
 </head>
 <body>
 
-<header>
+<header class="site">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Mizan home"><picture><source srcset="/assets/mizan-logo-dark-640.png" media="(prefers-color-scheme: dark)"><img src="/assets/mizan-logo-640.png" alt="Mizan" width="640" height="205"></picture></a>
+    <a class="brand" href="#top" aria-label="Mizan home">
+      <img class="logo-light" src="/assets/mizan-logo-640.png" alt="Mizan" width="640" height="205">
+      <img class="logo-dark" src="/assets/mizan-logo-dark-640.png" alt="" width="640" height="205">
+    </a>
     <nav aria-label="Main">
-      <a href="#why">Why it works</a>
-      <a href="#change">What changes</a>
+      <a href="#approach">Approach</a>
+      <a href="#report">Sample report</a>
       <a href="#method">Method</a>
       <a href="#faq">Questions</a>
-      <a class="btn" href="mailto:hello@mizanworkforce.com?subject=Conversation%20about%20Mizan">Talk to us</a>
+      <a class="btn" href="#contact">Request a demo<span class="wide">nstration</span></a>
     </nav>
   </div>
 </header>
@@ -238,182 +289,228 @@ footer a{color:var(--ink-2)}
 <main id="top">
 
 <section class="hero">
+  <div class="hero-img" aria-hidden="true"></div>
   <div class="wrap">
     <div>
-      <h1>Your people know what needs to change.</h1>
-      <p class="lede">Most of them will never say it to you directly. Mizan gives every employee a safe, genuinely anonymous way to tell the truth, and gives leaders a clear, prioritised plan to act on it.</p>
+      <h1>See the workforce risks leadership may be missing.</h1>
+      <p class="lede">Mizan helps organisations uncover hidden workforce bottlenecks, understand where leaders and employees see things differently, and turn findings into practical improvement plans.</p>
       <div class="ctas">
-        <a class="btn" href="mailto:hello@mizanworkforce.com?subject=Conversation%20about%20Mizan">Book a 20-minute conversation</a>
-        <a class="btn ghost" href="#why">See how it works</a>
+        <a class="btn" href="#contact">Request a prototype demonstration</a>
+        <a class="btn ghost" href="#report">Explore the sample report</a>
       </div>
-      <p class="note">For organisations of every size, anywhere in the world. Now selecting founding partners, starting in Bahrain.</p>
     </div>
-    <figure class="scale" id="scale">
-      <svg viewBox="0 -26 400 276" role="img" aria-labelledby="scale-t">
-        <title id="scale-t">A balance scale. Leaders expect a score of 79 for employee voice; employees report 53.</title>
-        <rect x="196" y="92" width="8" height="128" rx="3" class="svg-ink"/>
-        <rect x="150" y="218" width="100" height="10" rx="4" class="svg-ink"/>
-        <g class="beam">
-          <rect x="52" y="88" width="296" height="8" rx="4" class="svg-ink"/>
-          <circle cx="200" cy="92" r="9" class="svg-red"/>
-        </g>
-        <g class="pan-l">
-          <line x1="70" y1="94" x2="40" y2="146" class="svg-line" stroke-width="2"/>
-          <line x1="70" y1="94" x2="100" y2="146" class="svg-line" stroke-width="2"/>
-          <path d="M30 146h80a40 14 0 0 1-80 0z" class="svg-gold"/>
-          <text x="70" y="40" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="38" class="svg-ink">79</text>
-          <text x="70" y="62" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13" class="svg-muted">leaders expect</text>
-        </g>
-        <g class="pan-r">
-          <line x1="330" y1="94" x2="300" y2="146" class="svg-line" stroke-width="2"/>
-          <line x1="330" y1="94" x2="360" y2="146" class="svg-line" stroke-width="2"/>
-          <path d="M290 146h80a40 14 0 0 1-80 0z" class="svg-red"/>
-          <text x="330" y="40" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="38" class="svg-ink">53</text>
-          <text x="330" y="62" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13" class="svg-muted">employees report</text>
-        </g>
-      </svg>
-      <figcaption>Mizan means balance. In our demonstration data, leaders predicted 79 out of 100 for how safely staff can raise concerns. Employees scored it 53. That gap is where problems hide.</figcaption>
-    </figure>
   </div>
 </section>
 
 <section class="silence">
-  <div class="wrap">
+  <div class="wrap split">
     <div>
-      <p class="kicker">Why the truth stays hidden</p>
+      <p class="kicker">Why risks stay hidden</p>
       <h2>Silence is not the same as satisfaction.</h2>
+      <figure class="scale" id="scale">
+        <div class="top"><span>Perception gap, one dimension</span><span class="tag ill">Illustrative data</span></div>
+        <svg viewBox="0 -26 400 276" role="img" aria-labelledby="scale-t">
+          <title id="scale-t">A balance scale. Leaders predicted 79 for how safely staff can raise concerns; employees scored 53.</title>
+          <rect x="196" y="92" width="8" height="128" rx="3" class="s-ink"/>
+          <rect x="150" y="218" width="100" height="10" rx="4" class="s-ink"/>
+          <g class="beam"><rect x="52" y="88" width="296" height="8" rx="4" class="s-ink"/><circle cx="200" cy="92" r="9" class="s-red"/></g>
+          <g class="pan-l">
+            <line x1="70" y1="94" x2="40" y2="146" class="s-line" stroke-width="2"/><line x1="70" y1="94" x2="100" y2="146" class="s-line" stroke-width="2"/>
+            <path d="M30 146h80a40 14 0 0 1-80 0z" class="s-gold"/>
+            <text x="70" y="40" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="38" class="s-ink">79</text>
+            <text x="70" y="62" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13" class="s-muted">leaders predicted</text>
+          </g>
+          <g class="pan-r">
+            <line x1="330" y1="94" x2="300" y2="146" class="s-line" stroke-width="2"/><line x1="330" y1="94" x2="360" y2="146" class="s-line" stroke-width="2"/>
+            <path d="M290 146h80a40 14 0 0 1-80 0z" class="s-red"/>
+            <text x="330" y="40" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="38" class="s-ink">53</text>
+            <text x="330" y="62" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13" class="s-muted">employees reported</text>
+          </g>
+        </svg>
+        <figcaption>Mizan means balance. In this fictional example, leaders expected 79 out of 100 for how safely staff can raise concerns. Employees scored it 53. A gap like this is a reason to look closer, not a verdict.</figcaption>
+      </figure>
     </div>
-    <ul class="reasons">
-      <li><h3>People fear being identified</h3><p>When a survey asks for an employee number, a login or even a department of five people, honest answers stop. Staff answer the way they think is safe, not the way things are.</p></li>
+    <ul class="rule-list">
+      <li><h3>People fear being identified</h3><p>When a survey asks for an employee number or a login, honest answers stop. Staff answer the way that feels safe, not the way things are.</p></li>
       <li><h3>Concerns travel through the people they are about</h3><p>If the only route for a complaint runs through a direct manager, the most important complaints are the ones nobody makes.</p></li>
-      <li><h3>Nothing visibly happens afterwards</h3><p>One survey that leads nowhere teaches a workforce that speaking up is pointless. The next survey gets politer and less useful.</p></li>
+      <li><h3>Leaders see a different organisation</h3><p>Reports, dashboards and meetings show leadership a filtered picture. The bottlenecks that slow teams down are often visible only from the floor.</p></li>
+      <li><h3>Nothing visibly changes afterwards</h3><p>A survey that leads nowhere teaches people that speaking up is pointless. The next one gets politer and less useful.</p></li>
     </ul>
   </div>
 </section>
 
-<section class="cost">
+<section class="sources" id="approach">
   <div class="wrap">
-    <p class="kicker">What it costs when nobody speaks</p>
-    <h2>The problems you hear about last are the expensive ones.</h2>
-    <div class="grid">
-      <div class="item"><h3>Good people leave quietly</h3><p>Resignations arrive with polite reasons. The real reason surfaced months earlier and never reached anyone who could fix it.</p></div>
-      <div class="item"><h3>Disputes start outside the building</h3><p>A grievance nobody heard inside becomes a formal complaint, a claim or a regulator's question, at far greater cost.</p></div>
-      <div class="item"><h3>Compliance gaps go unnoticed</h3><p>Unpaid overtime, missed rest days or unsafe practices are usually known on the floor long before they are known in the boardroom.</p></div>
-      <div class="item"><h3>Leaders plan with the wrong picture</h3><p>Decisions about pay, workload and promotion are made on what management believes, not on what employees experience.</p></div>
+    <p class="kicker">The approach</p>
+    <h2>Three sources of evidence, compared side by side.</h2>
+    <p class="lede" style="margin-top:16px">No single source tells the whole story. Mizan compares what employees experience, what the records show and what leaders believe, and pays most attention where they disagree.</p>
+    <div class="src-grid">
+      <div class="src">
+        <h3>Employee feedback</h3>
+        <p class="who">Everyone in scope, through an anonymous survey</p>
+        <p>Short factual statements (true or false) and experience statements (agree or disagree) across ten dimensions, plus a few questions for each workforce level. No written answers are collected.</p>
+        <p class="catches">Shows how work is actually experienced, team by team and level by level.</p>
+      </div>
+      <div class="src">
+        <h3>HR records and operational indicators</h3>
+        <p class="who">Documents your organisation provides, reviewed by Mizan</p>
+        <p>A structured check of twenty record types, such as contracts, payroll against attendance, leave balances, safety logs and complaint handling. Each is marked evidenced, partly evidenced or not evidenced.</p>
+        <p class="catches">Tests whether what people report is reflected in what the organisation can show.</p>
+      </div>
+      <div class="src">
+        <h3>Leadership predictions</h3>
+        <p class="who">Senior leaders, before any results are seen</p>
+        <p>Leaders estimate how employees will score each dimension and answer a few questions about how people risk is governed.</p>
+        <p class="catches">Reveals where leadership's picture differs from employees' experience.</p>
+      </div>
+    </div>
+    <div class="converge" aria-label="How disagreements are read">
+      <div><b>Employees and records agree</b>The finding is well supported. Act on it.</div>
+      <div><b>Employees and records disagree</b>Something needs checking: a policy that exists on paper but not in practice, or a concern that needs more context.</div>
+      <div><b>Leaders and employees disagree</b>A perception gap. Often the most useful finding, and the starting point for an honest leadership conversation.</div>
     </div>
   </div>
 </section>
 
-<section class="why" id="why">
+<section class="report-sec" id="report">
   <div class="wrap">
-    <p class="kicker">Why Mizan works</p>
-    <h2>Built so people can be honest, and leaders can act.</h2>
-    <p class="lede">Most engagement surveys measure mood. Mizan measures whether the basics of a fair workplace are actually happening, in a way employees trust enough to answer truthfully.</p>
-    <div class="pillars">
-      <div class="pillar"><h3>Anonymity that holds up</h3><div><p>No names, employee numbers, emails or logins. Each person receives a one-time code at random, and the code is never stored with their answers. Results are only shown for groups of eight or more.</p><p>Employees can see this for themselves before they answer, which is why they answer honestly.</p></div></div>
-      <div class="pillar"><h3>Independent, not internal</h3><div><p>Mizan sits outside your reporting lines. Your leadership receives findings, never individual responses, and nobody inside the organisation can trace an answer back to a person.</p></div></div>
-      <div class="pillar"><h3>Leaders predict first</h3><div><p>Before results are revealed, senior leaders record what they expect employees to say. The distance between belief and reality is often the most useful finding of all, and the hardest to argue with.</p></div></div>
-      <div class="pillar"><h3>Grounded in labour law</h3><div><p>Questions are built around the obligations employers already carry: contracts, pay, working hours, leave, safety, dignity, grievance and fair exit. Findings point to specific, fixable practices rather than vague sentiment.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="change" id="change">
-  <div class="wrap">
-    <p class="kicker">What changes</p>
-    <h2>From findings to a plan your people can see.</h2>
-    <p class="lede">Every Mizan assessment ends with owners, deadlines and a date to measure again.</p>
-    <ol class="timeline">
-      <li><div class="when">30<small>days</small></div><h3>Fix what cannot wait</h3><p>Any serious risk reaches your most senior executive within five working days. Quick, visible actions show staff they were heard.</p></li>
-      <li><div class="when">90<small>days</small></div><h3>Repair the systems</h3><p>Managers get practical changes for their own teams: workload, coaching, grievance handling and the gaps each level reported.</p></li>
-      <li><div class="when">180<small>days</small></div><h3>Measure again</h3><p>A second assessment shows what actually improved, what did not, and where to focus next.</p></li>
-    </ol>
-    <div class="gets">
-      <div><h3>Leaders get</h3><p>A clear health score, the issues ranked by urgency, and a comparison of their expectations against reality.</p></div>
-      <div><h3>Managers get</h3><p>Priorities specific to their level, from frontline staff to senior leadership, rather than one generic action list.</p></div>
-      <div><h3>Employees get</h3><p>Proof that speaking up leads somewhere, which is what makes the next conversation more honest.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="anywhere">
-  <div class="wrap">
-    <div>
-      <p class="kicker">Who we work with</p>
-      <h2>Any organisation. Any country.</h2>
-      <p class="lede" style="margin-top:18px">The same ten dimensions apply to every workplace, whatever the sector or size. For each country we map the questions to its own labour law, clause by clause, so findings point to obligations your organisation actually carries. Bahrain is our first market.</p>
-    </div>
-    <ul>
-      <li><b>Growing businesses</b><span>Owners who want to keep good people as they scale, before problems become patterns.</span></li>
-      <li><b>Large employers</b><span>Multi-site and shift-based workforces where head office cannot see every floor.</span></li>
-      <li><b>HR leaders</b><span>Independent evidence to support the case for change with the board.</span></li>
-      <li><b>Groups and investors</b><span>A consistent view of workforce risk across companies and countries.</span></li>
-    </ul>
-  </div>
-</section>
-
-<section class="partners" id="partners">
-  <div class="wrap">
-    <div class="panel">
+    <div class="report-head">
       <div>
-        <p class="kicker">Founding partners</p>
-        <h2>Be one of the organisations that shapes Mizan.</h2>
-        <p class="lede">We are selecting a small group of founding partner organisations for our first assessments. You get a full assessment on founding terms. We get your honest feedback and, with your approval, a published case study.</p>
-        <div class="cta"><a class="btn" href="mailto:hello@mizanworkforce.com?subject=Founding%20partner%20enquiry">Ask about founding partner places</a></div>
+        <p class="kicker">Sample employer report</p>
+        <h2>Explore what leadership receives.</h2>
       </div>
-      <ul class="checks">
-        <li>Full assessment for your whole workforce</li>
-        <li>Leadership prediction and gap analysis</li>
-        <li>Prioritised 30, 90 and 180 day plan</li>
-        <li>Follow-up assessment at six months</li>
-        <li>Founding partner fee, agreed on a call</li>
-        <li>Direct input into how Mizan develops</li>
-      </ul>
+      <p class="note">This report uses invented data for a fictional organisation of 180 people. It shows the format only. Scores and ratings are provisional until the method is calibrated with real assessments.</p>
     </div>
-    <div class="verify">
-      <h3>Promises you can check before you sign</h3>
-      <div class="grid">
-        <p><b>See exactly what we store</b>We will show you the structure of a response record before your assessment starts. It holds no name, code, email or time.</p>
-        <p><b>Try it as an employee</b>Take the survey yourself in demonstration mode and judge whether your people would feel safe answering it.</p>
-        <p><b>Read the full method</b>We walk your leadership through every question, score and threshold before anything goes to your staff.</p>
+
+    <div class="report">
+      <div class="r-top">
+        <b>Example Organisation · workforce health report</b>
+        <span><span class="tag ill">Illustrative data</span> <span class="tag">Provisional rating</span></span>
       </div>
+      <div class="tabs" role="tablist" aria-label="Report sections">
+        <button role="tab" id="t-sum" aria-controls="p-sum" aria-selected="true">Summary</button>
+        <button role="tab" id="t-dim" aria-controls="p-dim" aria-selected="false" tabindex="-1">Dimensions</button>
+        <button role="tab" id="t-gap" aria-controls="p-gap" aria-selected="false" tabindex="-1">Perception gap</button>
+        <button role="tab" id="t-ev" aria-controls="p-ev" aria-selected="false" tabindex="-1">Records evidence</button>
+        <button role="tab" id="t-lvl" aria-controls="p-lvl" aria-selected="false" tabindex="-1">By level</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-sum" aria-labelledby="t-sum">
+        <div class="sum">
+          <div>
+            <div class="big num">70.6<small> / 100</small></div>
+            <div class="rating"><span class="grade">C</span><span>Provisional rating. The score alone falls in band B; two red flags cap it at C.</span></div>
+          </div>
+          <div class="facts">
+            <div><span>Response rate</span><b class="num">67% (120 of 180)</b></div>
+            <div><span>Records evidence score</span><b class="num">62 / 100</b></div>
+            <div><span>Largest perception gap</span><b class="num">26 points</b></div>
+            <div><span>Red flags</span><b class="num">2</b></div>
+          </div>
+        </div>
+        <p class="flag"><b>Red flag:</b>26% of employees say extra hours are not paid or compensated as owed. Records partly support this: one month of attendance did not fully match overtime paid.</p>
+        <p class="flag"><b>Red flag:</b>24% of employees say they could not report a serious problem without fear of consequences.</p>
+        <p class="cap">A red flag is a critical item where at least 20% of answers are unfavourable. It means the issue is widespread enough to act on now. It does not establish that any individual did anything wrong.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-dim" aria-labelledby="t-dim" hidden>
+        <div class="tw">
+          <table class="dimtable" id="dimtable">
+            <thead><tr><th scope="col">Dimension</th><th scope="col" style="width:40%">Employee score</th><th scope="col">Score</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="detail" id="dimdetail" aria-live="polite"></div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-gap" aria-labelledby="t-gap" hidden>
+        <div class="legend"><span><i style="background:var(--ink)"></i>Leadership prediction</span><span><i style="background:var(--red)"></i>Employee score</span><span>Gaps of 20 or more points are highlighted</span></div>
+        <div id="gaprows"></div>
+        <p class="cap">Leaders recorded their predictions before seeing any results. A large gap suggests leadership's view of that area is out of date; the next step is to understand why, not to assign blame.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-ev" aria-labelledby="t-ev" hidden>
+        <div class="tw">
+          <table class="dimtable" id="evtable">
+            <thead><tr><th scope="col">Dimension</th><th scope="col">Records reviewed</th><th scope="col">Result</th><th scope="col">What it means</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="cap">An evidence score below 50 marks the whole report as unverified. Records are reviewed from a sample chosen by Mizan, not by the organisation.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-lvl" aria-labelledby="t-lvl" hidden>
+        <div class="tw">
+          <table class="dimtable heat" id="lvltable">
+            <thead><tr><th scope="col">Dimension</th><th scope="col">Frontline</th><th scope="col">Professional</th><th scope="col">Supervisor or manager</th><th scope="col">Senior leadership</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="lvl-note">Cells 15 or more points below the organisation score are marked in red. Any group with fewer than 8 respondents is combined with another or not shown.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plan" id="plan">
+  <div class="wrap">
+    <p class="kicker">From findings to action</p>
+    <h2>Every finding becomes a plan with an owner and a date.</h2>
+    <p class="lede">Findings are sorted into tiers. The tier sets the deadline and who is accountable. Issues that affect people's basic rights at work always come before engagement concerns.</p>
+    <div class="tiers">
+      <div><div class="when">30<small>days</small></div><h3>Stop the harm</h3><p>Red flags and the most serious gaps. A pattern of serious harm reaches the most senior executive within five working days.</p><p class="own">Owner: chief executive or owner</p></div>
+      <div><div class="when">90<small>days</small></div><h3>Fix the system</h3><p>Weak dimensions, large perception gaps, and levels scoring well below the rest of the organisation.</p><p class="own">Owner: HR head with the department head</p></div>
+      <div><div class="when">180<small>days</small></div><h3>Build</h3><p>Leadership and growth improvements, then a second assessment to measure what changed.</p><p class="own">Owner: department heads and line managers</p></div>
+    </div>
+
+    <div class="plan-ex">
+      <div class="hdr"><h3>Example improvement plan</h3><span class="tag">Illustrative data</span></div>
+      <div class="tw">
+        <table class="ptable">
+          <thead><tr><th scope="col">Due</th><th scope="col">Finding</th><th scope="col">First action</th><th scope="col">Owner</th><th scope="col">Review</th></tr></thead>
+          <tbody>
+            <tr><td class="t">30 days</td><td>Overtime not paid as owed (red flag; records partly evidenced)</td><td>Reconcile one month of attendance against overtime paid and settle any shortfall</td><td>Chief executive</td><td>Day 30: reconciliation complete</td></tr>
+            <tr><td class="t">30 days</td><td>Fear of reporting serious problems (red flag)</td><td>Written non-retaliation commitment from the chief executive and a reporting route outside line management</td><td>Chief executive</td><td>Day 30: route live and announced</td></tr>
+            <tr><td class="t">90 days</td><td>Voice and grievance scored 53, a 26-point gap with leadership</td><td>Publish the complaint procedure, train managers in handling grievances, report outcomes to staff each quarter</td><td>HR head with department heads</td><td>Day 90: first outcome report</td></tr>
+            <tr><td class="t">90 days</td><td>Frontline 15+ points below the organisation on working time</td><td>Review rosters and rest days for frontline teams</td><td>HR head with operations head</td><td>Day 90: roster audit</td></tr>
+            <tr><td class="t">180 days</td><td>Growth and recognition scored 60</td><td>Training plan for each role and published promotion criteria</td><td>Department heads</td><td>Re-assessment</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Each finding in a real report carries five things: what employees said, what the records showed, any legal reference, where it is concentrated, and one recommended first action.</p>
     </div>
   </div>
 </section>
 
 <section class="founder" id="founder">
-  <div class="wrap">
+  <div class="wrap split">
     <div>
       <p class="kicker">Who is behind Mizan</p>
       <h2>Built by someone who has led people, not just measured them.</h2>
     </div>
-    <div class="founder-body">
+    <div class="body">
       <p class="lede">Mizan was founded by <b>Prabal Pratap Singh</b>, a people and sales leader with years of experience identifying and fixing the workplace problems that hold teams back.</p>
       <p>Leading teams, he saw the same pattern again and again: the people closest to the work knew what was broken long before leadership did, and almost none of them said so. Mizan exists to close that gap, with a method that protects the people who speak and gives leaders something concrete to act on.</p>
-      <p class="sign">Prabal Pratap Singh, Founder &nbsp;|&nbsp; <a href="mailto:hello@mizanworkforce.com">hello@mizanworkforce.com</a></p>
+      <p>Mizan is at prototype stage. We are looking for a small number of organisations to take part in early assessments and help shape the method.</p>
+      <p class="sign">Prabal Pratap Singh, Founder &nbsp;|&nbsp; hello@mizanworkforce.com</p>
     </div>
   </div>
 </section>
 
 <section class="method" id="method">
   <div class="wrap">
-    <div class="intro">
-      <div>
-        <p class="kicker">The method</p>
-        <h2>How an assessment runs.</h2>
-      </div>
-      <p class="lede">A typical assessment takes four to six weeks from first conversation to final report. Employees spend about fifteen minutes on the survey.</p>
-    </div>
+    <p class="kicker">Method</p>
+    <h2>How an assessment runs, and how it is scored.</h2>
     <ol class="steps">
-      <li><h3>Agree the scope</h3><p>Workforce, departments, languages, privacy terms and timeline.</p></li>
+      <li><h3>Agree the scope</h3><p>Workforce, sites, languages, records to review, privacy terms and timeline, all agreed in writing first.</p></li>
       <li><h3>Leaders predict</h3><p>Senior leaders record their expectations before anyone answers.</p></li>
-      <li><h3>Employees answer</h3><p>Anonymous one-time codes, on any phone or computer, in about fifteen minutes.</p></li>
-      <li><h3>Report and plan</h3><p>Score, rating, gap analysis and a prioritised plan presented to leadership.</p></li>
+      <li><h3>Employees answer, records are checked</h3><p>Anonymous survey on any phone or computer, alongside the records review.</p></li>
+      <li><h3>Report and plan</h3><p>Score, provisional rating, gap analysis and a prioritised plan presented to leadership.</p></li>
     </ol>
 
-    <div class="detail">
+    <div class="m-grid">
       <div>
-        <h3>Ten dimensions of workforce health</h3>
+        <h3>Ten dimensions</h3>
         <ul class="dims">
           <li>Contract and role clarity</li>
           <li>Pay integrity</li>
@@ -426,59 +523,86 @@ footer a{color:var(--ink-2)}
           <li>Leadership and management</li>
           <li>Growth and recognition</li>
         </ul>
-        <p class="fine">Each dimension combines factual statements (true or false) with experience statements (agree or disagree), plus a short set of questions specific to each workforce level.</p>
+        <p class="fine">The first eight are foundations tied to employers' legal obligations. The last two drive engagement and performance. Questions are mapped to the employment law of the country where your people work, and that mapping is reviewed by local counsel before any rating is issued.</p>
       </div>
       <div>
-        <h3>The Mizan rating</h3>
+        <h3>How the score is built</h3>
+        <ol class="score-steps">
+          <li>Each answer becomes 0 to 100: true or false statements score 100 or 0; the agree scale scores 100, 75, 50, 25 or 0. "Not sure" and "Don't know" are left out.</li>
+          <li>A dimension score is the average of its statements, and the health score is the average of the ten dimensions.</li>
+          <li>The rating comes from the band, then safeguards can only lower it.</li>
+        </ol>
         <div class="bands" role="table" aria-label="Rating bands">
-          <div class="band" role="row"><b role="cell">A</b><span role="cell">85 to 100</span><span role="cell">Exemplary</span></div>
-          <div class="band" role="row"><b role="cell">B</b><span role="cell">70 to 84</span><span role="cell">Healthy</span></div>
-          <div class="band" role="row"><b role="cell">C</b><span role="cell">55 to 69</span><span role="cell">Needs attention</span></div>
-          <div class="band" role="row"><b role="cell">D</b><span role="cell">40 to 54</span><span role="cell">At risk</span></div>
-          <div class="band" role="row"><b role="cell">E</b><span role="cell">Below 40</span><span role="cell">Critical</span></div>
+          <div class="band" role="row"><b role="cell">A</b><span role="cell" class="num">85 to 100</span><span role="cell">Strong</span></div>
+          <div class="band" role="row"><b role="cell">B</b><span role="cell" class="num">70 to 84</span><span role="cell">Healthy</span></div>
+          <div class="band" role="row"><b role="cell">C</b><span role="cell" class="num">55 to 69</span><span role="cell">Needs attention</span></div>
+          <div class="band" role="row"><b role="cell">D</b><span role="cell" class="num">40 to 54</span><span role="cell">At risk</span></div>
+          <div class="band" role="row"><b role="cell">E</b><span role="cell" class="num">Below 40</span><span role="cell">Critical</span></div>
         </div>
-        <p class="fine">No rating is issued if fewer than 60% of employees take part. Serious red flags cap the rating regardless of the overall score, so a high average cannot hide a real problem.</p>
+        <p class="fine">Safeguards: no rating below 60% participation; one or two red flags cap the rating at C, three or more at D; any foundation dimension below 40 caps it at D; a records evidence score below 50 marks the report unverified.</p>
       </div>
+    </div>
+
+    <div class="limits">
+      <h3>Limitations we state up front</h3>
+      <ul>
+        <li>Ratings and band thresholds are provisional. They will be recalibrated once results exist from at least ten organisations. There is no external benchmark yet.</li>
+        <li>A survey measures experience, not legal compliance. Mizan does not certify compliance or give legal advice.</li>
+        <li>A finding shows where to look, not who is at fault. Most findings need a follow-up conversation or record check before action is taken against any person or practice.</li>
+        <li>Results depend on participation. Low response rates, or groups too small to report, reduce what can be said.</li>
+        <li>Mizan is at prototype stage. Early assessments are run with participating organisations to test and improve the method.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="sample">
+<section class="privacy" id="privacy">
   <div class="wrap">
-    <div>
-      <p class="kicker">What leadership receives</p>
-      <h2>A report you can act on in one meeting.</h2>
-      <p class="lede" style="margin-top:18px">This example uses invented data for a fictional company, to show the format. It is not a client result.</p>
-    </div>
-    <div class="report" aria-label="Example report summary with invented data">
-      <header><b>Example Company · health summary</b><span class="tag">Illustrative data</span></header>
-      <div class="score">70.6<small> / 100</small></div>
-      <p class="rating">Rating C. The score alone would earn a B, but two red flags cap it.</p>
-      <div class="row"><span>Contract and role clarity</span><span class="v">83</span><div class="track"><i style="width:83%"></i></div></div>
-      <div class="row"><span>Leadership and management</span><span class="v">66</span><div class="track"><i style="width:66%"></i></div></div>
-      <div class="row"><span>Voice, grievance and discipline</span><span class="v">53</span><div class="track"><i class="risk" style="width:53%"></i></div></div>
-      <p class="flag"><b>Red flag:</b> 1 in 5 employees say they would face negative consequences for raising a concern. Action owner: chief executive, within 30 days.</p>
+    <p class="kicker">Confidentiality and anonymity</p>
+    <h2>Two different promises, kept separately.</h2>
+    <div class="cols">
+      <div>
+        <h3>Anonymous: employee survey answers</h3>
+        <ul>
+          <li>No name, employee number, email, phone or login is asked for.</li>
+          <li>Each person receives a one-time access code at random. The code is never stored with their answers.</li>
+          <li>Answers carry only role level and, optionally, department.</li>
+          <li>Results are reported only for groups of eight or more people.</li>
+        </ul>
+        <p class="fine">Very small teams can still be recognisable from their level and department. That is why small groups are combined or hidden, and why department is optional.</p>
+      </div>
+      <div>
+        <h3>Confidential: records, predictions and the report</h3>
+        <ul>
+          <li>HR records are reviewed by Mizan under a written agreement and are not published.</li>
+          <li>Leadership predictions are known to Mizan, so they are confidential rather than anonymous.</li>
+          <li>The report belongs to the organisation. Mizan does not share an organisation's name, score or findings with any third party.</li>
+          <li>No real employee responses or HR records are collected until consent wording, access and retention terms are agreed.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="faq" id="faq">
   <div class="wrap">
-    <h2>Questions leaders ask us</h2>
-    <details><summary>Is it really anonymous?</summary><p>Yes. Employees receive random one-time codes, and no name, employee number, email, phone or device detail is collected. Codes are stored only in scrambled form and are never saved alongside answers. Any group smaller than eight people is combined or hidden in the report.</p></details>
-    <details><summary>Will employees actually take part?</summary><p>Participation rises when people can see the protections for themselves and when leadership commits in advance to share what will change. We help you plan that announcement. A rating is only issued when at least 60% of staff respond.</p></details>
-    <details><summary>Do you work outside the Gulf?</summary><p>Yes. The ten dimensions apply to any workplace. For each country we map the questions to that country's labour law, so findings stay specific and actionable.</p></details>
-    <details><summary>Do you share our results with anyone?</summary><p>No. Your report belongs to your organisation. We never share an organisation's name, score or findings with any authority or third party.</p></details>
-    <details><summary>What does it cost?</summary><p>Fees depend on headcount and the number of sites. Founding partners receive reduced terms. We agree the fee on a short call once we understand your workforce.</p></details>
-    <details><summary>How much of our people's time does it take?</summary><p>About fifteen minutes per employee, once. Senior leaders spend a further ten minutes recording their predictions.</p></details>
+    <h2>Questions leaders ask</h2>
+    <details><summary>Who takes part, and how long does it take?</summary><p>Every employee in the agreed scope is invited. The survey takes most people around fifteen minutes on a phone or computer. Senior leaders also record their predictions before results are collected. Taking part is voluntary for employees, and they can skip any question.</p></details>
+    <details><summary>How do you encourage honest participation?</summary><p>Employees can see the protections before they answer, and leadership commits in advance to share what will change. A rating is only issued when at least 60% of people in scope respond.</p></details>
+    <details><summary>Is it anonymous or confidential?</summary><p>Both, for different parts. Employee survey answers are collected anonymously and reported only for groups of eight or more. HR records, leadership predictions and the final report are confidential: Mizan sees them, and the organisation decides who else does.</p></details>
+    <details><summary>What does the report include?</summary><p>A health score and provisional rating, results for each dimension and each workforce level, the perception gap between leaders and employees, the records evidence, any red flags, and a prioritised improvement plan with owners and review dates.</p></details>
+    <details><summary>Do you share our results with anyone?</summary><p>No. The report belongs to your organisation. Mizan does not share an organisation's name, score or findings with any authority or third party.</p></details>
+    <details><summary>What does an early assessment cover?</summary><p>Scope is agreed with each organisation: which workforce and sites, languages, the records to review and the timeline. Terms are discussed directly and confirmed in writing before any data is collected.</p></details>
+    <details><summary>Can you work with organisations in any country?</summary><p>Yes. The ten dimensions apply to any workplace. For each country, the questions and records check are mapped to its employment law, with local review before results are rated.</p></details>
   </div>
 </section>
 
-<section class="closing">
+<section class="contact" id="contact">
   <div class="wrap">
-    <h2>Find out what your people would tell you if they felt safe.</h2>
-    <p class="lede">Start with a 20-minute conversation. No preparation needed, and no obligation.</p>
-    <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="mailto:hello@mizanworkforce.com?subject=Conversation%20about%20Mizan">Email hello@mizanworkforce.com</a><a class="btn ghost" href="https://www.linkedin.com/company/mizanworkforce" rel="noopener">Follow Mizan on LinkedIn</a></div>
+    <h2>See the method on a real conversation, not a sales call.</h2>
+    <p class="lede">Request a prototype demonstration. We will walk you through the survey as an employee sees it, the sample report and how a plan is built, then discuss whether an early assessment fits your organisation.</p>
+    <a class="btn" href="mailto:hello@mizanworkforce.com?subject=Mizan%20prototype%20demonstration">Request a prototype demonstration</a>
+    <div class="mailbox"><span>Or write to</span><code id="mail">hello@mizanworkforce.com</code><button type="button" id="copy">Copy address</button><span id="copied" aria-live="polite"></span></div>
   </div>
 </section>
 
@@ -486,18 +610,83 @@ footer a{color:var(--ink-2)}
 
 <footer>
   <div class="wrap">
-    <span class="foot-brand"><picture><source srcset="/assets/mizan-logo-dark-640.png" media="(prefers-color-scheme: dark)"><img src="/assets/mizan-logo-640.png" alt="Mizan" width="640" height="205"></picture>© 2026 Mizan. Independent workforce health assessment.</span>
-    <span class="foot-links"><a href="mailto:hello@mizanworkforce.com">hello@mizanworkforce.com</a><a href="https://www.linkedin.com/company/mizanworkforce" rel="noopener">LinkedIn</a></span>
+    <div>
+      <div class="flogo"><img class="logo-light" src="/assets/mizan-logo-640.png" alt="Mizan" width="640" height="205"><img class="logo-dark" src="/assets/mizan-logo-dark-640.png" alt="" width="640" height="205"></div>
+      <span>© 2026 Mizan. Illustrative data and provisional ratings are labelled throughout.</span>
+    </div>
+    <div class="links"><a href="mailto:hello@mizanworkforce.com">hello@mizanworkforce.com</a><a href="https://www.linkedin.com/company/mizanworkforce" rel="noopener">LinkedIn</a></div>
   </div>
 </footer>
 
 <script>
 (function(){
+  /* All figures below are invented for a fictional organisation. */
+  var D=[
+    {n:"Contract and role clarity",s:83,p:88,ev:"y",evn:"Contracts and probation terms",lv:[80,84,86,90],
+     sug:"People understand their roles and terms. This is a strength to protect.",nx:"Spot-check that job descriptions still match the work done in teams that grew recently."},
+    {n:"Pay integrity",s:76,p:85,ev:"p",evn:"Payroll records and deductions register",lv:[68,80,82,88],
+     sug:"Most people are paid correctly and on time, but frontline scores are lower.",nx:"Compare frontline payslips against payroll for a sample of three months."},
+    {n:"Working time and rest",s:65,p:80,ev:"n",evn:"Attendance against overtime paid",lv:[49,70,72,84],
+     sug:"Long or uncompensated hours are concentrated in frontline teams, and records do not fully reconcile.",nx:"Reconcile one month of attendance with overtime pay; review rosters for weekly rest."},
+    {n:"Leave and life events",s:69,p:82,ev:"y",evn:"Leave ledger and sick pay",lv:[64,70,72,80],
+     sug:"Leave is generally available but harder to take in some teams.",nx:"Check whether leave requests are refused more often in specific departments."},
+    {n:"Safety and physical wellbeing",s:82,p:86,ev:"y",evn:"Hazard assessment, training and injury log",lv:[79,84,84,88],
+     sug:"Safety is broadly well managed.",nx:"Keep training records current; recheck at the next assessment."},
+    {n:"Dignity and fair treatment",s:73,p:84,ev:"p",evn:"Anti-harassment policy and pay equity",lv:[69,74,76,86],
+     sug:"Most people feel respected, with a gap between leadership's view and frontline experience.",nx:"Confirm the policy has been communicated to every team, not only filed."},
+    {n:"Voice, grievance and discipline",s:53,p:79,ev:"p",evn:"Complaints log and disciplinary files",lv:[46,55,58,74],
+     sug:"People doubt that raising concerns is safe or effective. This is the largest perception gap in the report.",nx:"Review how recent complaints were handled and how outcomes were communicated."},
+    {n:"Security, mobility and exit",s:79,p:85,ev:"y",evn:"Exit settlements and document handling",lv:[76,80,81,86],
+     sug:"Exits and documents are handled correctly in the sample reviewed.",nx:"No immediate action; maintain current practice."},
+    {n:"Leadership and management",s:66,p:80,ev:null,evn:"",lv:[60,68,70,82],
+     sug:"Trust in direction and communication is moderate and lower further from the top.",nx:"Hold listening sessions led by senior leaders with frontline teams."},
+    {n:"Growth and recognition",s:60,p:78,ev:null,evn:"",lv:[54,62,63,76],
+     sug:"Development paths and promotion criteria are unclear to many people.",nx:"Publish promotion criteria and agree a training plan for each role."}
+  ];
+  var ORG=70.6;
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+  /* tabs */
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function show(t){tabs.forEach(function(b){var on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;document.getElementById(b.getAttribute('aria-controls')).hidden=!on;});}
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){show(b)});
+    b.addEventListener('keydown',function(e){var k=e.key,j=i;if(k==='ArrowRight')j=(i+1)%tabs.length;else if(k==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else return;e.preventDefault();show(tabs[j]);tabs[j].focus();});
+  });
+
+  /* dimensions */
+  var tb=document.querySelector('#dimtable tbody'),det=document.getElementById('dimdetail'),sel=6;
+  function renderDims(){
+    tb.innerHTML=D.map(function(d,i){var risk=d.s<55;return '<tr class="'+(i===sel?'sel':'')+'"><td><button type="button" data-i="'+i+'" aria-pressed="'+(i===sel)+'">'+esc(d.n)+'</button></td><td><div class="track"><i class="'+(risk?'risk':'')+'" style="width:'+d.s+'%"></i></div></td><td class="num"><b>'+d.s+'</b></td></tr>';}).join('');
+    var d=D[sel];
+    det.innerHTML='<div><h4>What this suggests</h4><p>'+esc(d.sug)+'</p></div><div><h4>What to investigate next</h4><p>'+esc(d.nx)+'</p></div>';
+  }
+  tb.addEventListener('click',function(e){var b=e.target.closest('button[data-i]');if(!b)return;sel=+b.dataset.i;renderDims();tb.querySelector('button[data-i="'+sel+'"]').focus();});
+  renderDims();
+
+  /* gap */
+  document.getElementById('gaprows').innerHTML=D.map(function(d){var g=d.p-d.s,lo=Math.min(d.s,d.p),hi=Math.max(d.s,d.p);
+    return '<div class="gap-row"><span>'+esc(d.n)+'</span><div class="gap-bar" aria-label="Leaders '+d.p+', employees '+d.s+'"><div class="base"></div><div class="span" style="left:'+lo+'%;width:'+(hi-lo)+'%"></div><div class="dot emp" style="left:'+d.s+'%"></div><div class="dot lead" style="left:'+d.p+'%"></div></div><span class="gap-val num'+(g>=20?' big-gap':'')+'">'+(g>0?'+':'')+g+'</span></div>';}).join('');
+
+  /* evidence */
+  var lab={y:['y','Evidenced'],p:['p','Partly evidenced'],n:['n','Not evidenced']};
+  var mean={y:'Records support what employees reported.',p:'Some records exist but do not fully match practice.',n:'Records could not show the practice employees expect.'};
+  document.querySelector('#evtable tbody').innerHTML=D.map(function(d){if(!d.ev)return '<tr><td>'+esc(d.n)+'</td><td colspan="3" style="color:var(--muted)">Survey and leadership view only</td></tr>';var l=lab[d.ev];return '<tr><td>'+esc(d.n)+'</td><td>'+esc(d.evn)+'</td><td><span class="ev '+l[0]+'">'+l[1]+'</span></td><td style="color:var(--ink-2)">'+mean[d.ev]+'</td></tr>';}).join('');
+
+  /* levels */
+  document.querySelector('#lvltable tbody').innerHTML=D.map(function(d){return '<tr><td>'+esc(d.n)+'</td>'+d.lv.map(function(v){var low=v<=d.s-15;return '<td class="c num"><span style="'+(low?'background:var(--red-soft);color:var(--red)':'')+'">'+v+'</span></td>';}).join('')+'</tr>';}).join('');
+
+  /* scale */
   var s=document.getElementById('scale');
-  if(!s)return;
-  if(!('IntersectionObserver' in window)){s.classList.add('tilted');return;}
-  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){s.classList.add('tilted');io.disconnect();}},{threshold:.4});
-  io.observe(s);
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){s.classList.add('tilted');}
+  else setTimeout(function(){s.classList.add('tilted')},250);
+
+  /* copy */
+  var c=document.getElementById('copy'),out=document.getElementById('copied');
+  c.addEventListener('click',function(){var t='hello@mizanworkforce.com';
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('mail'));var w=getSelection();w.removeAllRanges();w.addRange(r);out.textContent='Selected. Press copy on your device.';}
+    try{navigator.clipboard.writeText(t).then(function(){out.textContent='Copied.'},sel);}catch(e){sel();}
+  });
 })();
 </script>
 </body>
