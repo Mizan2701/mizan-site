@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<title>Mizan Report</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/mizan-mark-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500..700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/portal/portal.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="https://mizanworkforce.com"><img src="/assets/mizan-logo-640.png" alt="Mizan" width="88" height="28"><span>Workforce health report</span></a>
+  <button class="btn small no-print" onclick="window.print()">Print or save as PDF</button>
+</div></header>
+<main id="view" aria-live="polite"><p class="note">Loading your report…</p></main>
+<script src="/app-config.js"></script>
+<script src="/portal/common.js"></script>
+<script>
+(function () {
+  var M = window.Mizan, view = document.getElementById('view');
+  window.addEventListener('hashchange', function () { location.reload(); });
+  var token = location.hash.replace(/^#/, '').trim();
+  if (!/^[a-z0-9]{24}$/i.test(token)) { view.innerHTML = '<section class="panel"><h1>Report link not valid</h1><p class="lede">Check that you opened the full link Mizan sent you.</p></section>'; return; }
+  M.call({action:'report', token:token}).then(function (r) {
+    if (!r.ok) { view.innerHTML = '<section class="panel"><h1>Report not available</h1><p class="lede">' + M.esc(M.errorText(r.error)) + ' Contact hello@mizanworkforce.com.</p></section>'; return; }
+    document.title = 'Mizan Report · ' + r.report.org.name;
+    view.innerHTML = M.renderReport(r.report, {mode:'client', actions:r.actions}) +
+      '<p class="note">Confidential to ' + M.esc(r.report.org.name) + '. Prepared by Mizan from anonymous employee responses, an on-site HR records check and leadership predictions. Groups smaller than ' + r.report.minGroup + ' are never shown. Questions: hello@mizanworkforce.com</p>';
+  });
+})();
+</script>
+</body>
+</html>

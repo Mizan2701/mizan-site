@@ -79,9 +79,10 @@ input[type=checkbox],input[type=range]{accent-color:var(--accent)}
 <body>
 <header><div class="bar"><b>Mizan</b><span>Confidential workforce survey</span></div></header>
 <main id="app"></main>
+<script src="/app-config.js"></script>
 <script>
 /* The address of the Mizan survey service. Empty means demo mode: code DEMO-2026 works and nothing is stored. */
-var ENDPOINT = "";
+var ENDPOINT = window.MIZAN_ENDPOINT || "";
 var DIMS=[],QUESTIONS=[],LEVELS=[],MODULES={},OUTCOME=[];
 /* The real questionnaire is not in this page. It arrives from the survey service only after a valid, unused code is entered. */
 function loadQ(q){
