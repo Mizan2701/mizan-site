@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Mizan Workforce Survey</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23fdfcf8'/%3E%3Cpath d='M7 23V9l9 9 9-9v14' stroke='%23CE1126' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500..700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAF7F1; --surface:#FFFDF8; --sunken:#EFE6D4; --line:#E2D8C3;
+  --ink:#23211D; --ink-2:#5A5348; --muted:#746B5E;
+  --accent:#23211D; --accent-ink:#FAF7F1; --accent-soft:#F3E6C8; --brand:#CE1126; --warn-bg:#F8E1E1;
+  --display:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:1.8rem;font-weight:650} h2{font-size:1.3rem;font-weight:600} h3{font-size:1.05rem;font-weight:600}
+p{margin:0} button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+header{background:var(--surface);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px}
+.bar{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.bar b{font-family:var(--display);font-size:1.2rem;font-weight:700}
+.bar b::before{content:"";display:inline-block;width:6px;height:18px;background:var(--brand);margin-right:8px;vertical-align:-2px}
+.bar span{color:var(--muted);font-size:.85rem}
+main{max-width:720px;margin:0 auto;padding:20px 16px calc(48px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:600}
+.lede{color:var(--ink-2)}
+.note{font-size:.88rem;color:var(--ink-2)}
+.progress{height:6px;background:var(--sunken);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--brand)}
+.promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;padding:0;margin:0;list-style:none}
+.promise li{font-size:.9rem;color:var(--ink-2);padding-left:12px;border-left:2px solid var(--brand)}
+.promise b{display:block;color:var(--ink)}
+.code{font-family:ui-monospace,"IBM Plex Mono",monospace;font-size:1.4rem;letter-spacing:.12em;text-transform:uppercase;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);width:100%;max-width:260px}
+.btn{border:1px solid var(--line);background:var(--surface);padding:11px 18px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.nav{display:flex;justify-content:space-between;gap:10px}
+.err{background:var(--warn-bg);border-radius:8px;padding:10px 12px;font-size:.92rem}
+.q{padding:14px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.q:first-child{border-top:0;padding-top:0}
+.q-kind{font-size:.7rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.q-text{font-weight:500}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts label{position:relative;cursor:pointer}
+.opts input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opts span{display:block;padding:9px 13px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-size:.92rem;min-width:44px;text-align:center}
+.opts input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+.opts input:focus-visible+span{outline:2px solid var(--brand);outline-offset:2px}
+.opts .dk span{border-style:dashed;color:var(--ink-2)}
+.opts.ten span{min-width:40px;padding:9px 0}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.levels label{position:relative;cursor:pointer}
+.levels input{position:absolute;opacity:0;inset:0;margin:0}
+.levels div{border:1px solid var(--line);border-radius:10px;padding:10px 12px;height:100%;background:var(--surface)}
+.levels b{display:block} .levels small{color:var(--ink-2)}
+.levels input:checked+div{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+.levels input:focus-visible+div{outline:2px solid var(--brand);outline-offset:2px}
+select{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px;max-width:100%}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check input{margin-top:4px;width:18px;height:18px;flex:none}
+input[type=checkbox],input[type=range]{accent-color:var(--accent)}
+.pred{display:grid;grid-template-columns:minmax(0,1fr) 140px 40px;gap:10px;align-items:center;padding:6px 0;font-size:.92rem}
+.pred output{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.consent{display:flex;flex-direction:column;gap:8px;font-size:.93rem;color:var(--ink-2)}
+.consent b{color:var(--ink)}
+.demo{font-size:.8rem;color:var(--ink-2);background:var(--accent-soft);border-radius:8px;padding:8px 12px}
+@media (max-width:520px){.pred{grid-template-columns:minmax(0,1fr) 40px}.pred input{grid-column:1/-1;grid-row:2}}
+</style>
+</head>
+<body>
+<header><div class="bar"><b>Mizan</b><span>Confidential workforce survey</span></div></header>
+<main id="app"></main>
+<script>
+/* The address of the Mizan survey service. Empty means demo mode: code DEMO-2026 works and nothing is stored. */
+var ENDPOINT = "";
+var DIMS=[],QUESTIONS=[],LEVELS=[],MODULES={},OUTCOME=[];
+/* The real questionnaire is not in this page. It arrives from the survey service only after a valid, unused code is entered. */
+function loadQ(q){
+  DIMS=q.dims;QUESTIONS=q.questions;LEVELS=q.levels;OUTCOME=q.outcome;MODULES={};
+  Object.keys(q.modules).forEach(function(k){MODULES[k]=q.modules[k].map(function(x){return {id:x.id,t:x.t,text:x.text,mod:k}})});
+  STEPS=["about"].concat(DIMS.map(function(d){return "d"+d.id}),["role","review"]);
+}
+/* Demo mode only: placeholder questions, not the Mizan questionnaire. */
+function demoQ(){
+  var names=["Part one","Part two","Part three","Part four","Part five","Part six","Part seven","Part eight","Part nine","Part ten"];
+  var dims=names.map(function(n,i){return {id:i+1,name:n+" (demo)"}});
+  var qs=[];dims.forEach(function(d){qs.push({id:d.id+".1",d:d.id,t:"F",text:"Demo statement for this part. Choose any answer."});qs.push({id:d.id+".2",d:d.id,t:"P",text:"Another demo statement. Choose any answer."})});
+  var lv=[{id:"L1",name:"Frontline staff",desc:"Operative or support role, nobody reports to me"},{id:"L2",name:"Professional or specialist",desc:"Qualified role, nobody reports to me"},{id:"L3",name:"Supervisor or manager",desc:"People report to me; I am below department head"},{id:"L4",name:"Senior leadership",desc:"Department head or above"}];
+  var mods={};["L1","L2","L3","L4"].forEach(function(k){mods[k]=[{id:k.charAt(0)+"1",t:"P",text:"Demo statement for your role level."}]});
+  mods.L2[0].id="P1";mods.L3[0].id="M1";mods.L4[0].id="S1";mods.L1[0].id="F1";
+  return {dims:dims,questions:qs,levels:lv,modules:mods,outcome:[{id:"O1",t:"N",text:"Demo rating from 0 to 10."}]};
+}
+</script>
+<script>
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+var DEMO=!ENDPOINT;
+var STEPS=[];
+var S={stage:"code",code:"",org:"",depts:[],step:0,ans:{},level:"",dept:"",pred:{},consent:false,busy:false,err:""};
+var P_OPTS=[[4,"Strongly agree"],[3,"Agree"],[2,"Neither"],[1,"Disagree"],[0,"Strongly disagree"]];
+var ERR={unknown:"This code is not valid. Check the letters and numbers and try again.",used:"This code has already been used. Each code works once.",closed:"This survey is closed.",invalid:"Some answers could not be read. Please go back and check them.",network:"We could not reach the survey service. Check your connection and try again.",server:"Something went wrong on our side. Please try again in a few minutes."};
+
+function call(payload){
+  if(DEMO){
+    return new Promise(function(res){setTimeout(function(){
+      var c=String(payload.code||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+      if(c!=="DEMO2026") return res({ok:false,error:"unknown"});
+      if(payload.action==="check") return res({ok:true,org:"Demo organisation",depts:["Operations","Sales","Finance","HR and admin"],q:demoQ()});
+      res({ok:true});
+    },300)});
+  }
+  return fetch(ENDPOINT,{method:"POST",body:JSON.stringify(payload)}).then(function(r){return r.json()}).catch(function(){return {ok:false,error:"network"}});
+}
+function applicable(){return QUESTIONS.concat(S.level?MODULES[S.level]:[],OUTCOME)}
+function kind(q){return q.t==="F"?"True or false":q.t==="N"?"Rating 0 to 10":"Agree or disagree"}
+function opts(q){
+  var cur=S.ans[q.id], name="q"+q.id.replace(".","_");
+  function o(v,label,cls){return '<label class="'+(cls||"")+'"><input type="radio" name="'+name+'" data-q="'+q.id+'" value="'+v+'" '+(String(cur)===String(v)?"checked":"")+'><span>'+label+'</span></label>'}
+  if(q.t==="F") return '<div class="opts" role="radiogroup" aria-label="'+esc(q.text)+'">'+o("T","True")+o("F","False")+o("N","Not sure or does not apply","dk")+'</div>';
+  if(q.t==="N"){var s="";for(var i=0;i<=10;i++)s+=o(i,i);return '<div class="opts ten" role="radiogroup" aria-label="'+esc(q.text)+'">'+s+'</div>'}
+  return '<div class="opts" role="radiogroup" aria-label="'+esc(q.text)+'">'+P_OPTS.map(function(p){return o(p[0],p[1])}).join("")+o("N","Don't know","dk")+'</div>';
+}
+function qHtml(q){return '<div class="q"><span class="q-kind">'+kind(q)+'</span><p class="q-text">'+esc(q.text)+'</p>'+opts(q)+'</div>'}
+function errBox(){return S.err?'<p class="err" role="alert">'+esc(S.err)+'</p>':""}
+
+function render(){
+  var h="";
+  if(S.stage==="code"){
+    h='<section class="panel"><span class="eyebrow">Anonymous survey</span><h1>How healthy is your workplace?</h1>'+
+      '<p class="lede">Your answers help your organisation see what needs to change. Nobody at your workplace will ever see your individual answers.</p>'+
+      '<ul class="promise"><li><b>No identity</b>No name, employee number, ID, email or phone is asked for.</li><li><b>Code, not name</b>Your code only opens the survey. It is not stored with your answers.</li><li><b>Groups only</b>Results are reported for groups of 8 or more people.</li><li><b>Your choice</b>Taking part is voluntary and you can skip any question.</li></ul>'+
+      '<label for="code"><b>Enter your access code</b></label><div class="row"><input id="code" class="code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="XXXX-XXXX" value="'+esc(S.code)+'"><button class="btn primary" data-act="check" '+(S.busy?"disabled":"")+'>'+(S.busy?"Checking…":"Continue")+'</button></div>'+errBox()+
+      (DEMO?'<p class="demo">Demo mode: use code DEMO-2026. Answers are not stored.</p>':"")+'</section>';
+  } else if(S.stage==="consent"){
+    h='<section class="panel"><span class="eyebrow">'+esc(S.org)+'</span><h2>Before you start</h2><div class="consent">'+
+      '<p><b>Who runs this survey.</b> Mizan, an independent workforce diagnostic service, runs it for your employer. Your employer never sees individual answers.</p>'+
+      '<p><b>What is collected.</b> Your role level, your department if you choose to give it, and your answers. No name, ID, email, phone or device details are collected, and the record of your answers holds no time.</p>'+
+      '<p><b>How results are used.</b> Answers are combined into group results. Any group with fewer than 8 people is not shown.</p>'+
+      '<p><b>Where answers are kept.</b> On Google servers that may be outside Bahrain, under Bahrain\'s Personal Data Protection Law (Law 30 of 2018).</p>'+
+      '<p><b>If something serious is happening.</b> This survey cannot act on one person\'s case. You can contact the Ministry of Labour or the Labour Market Regulatory Authority directly.</p></div>'+
+      '<label class="check" for="consent"><input type="checkbox" id="consent" '+(S.consent?"checked":"")+'><span>I have read this and I agree to take part, including my answers being stored as described.</span></label>'+
+      '<div class="nav"><button class="btn" data-act="restart">Back</button><button class="btn primary" data-act="agree" '+(S.consent?"":"disabled")+'>Start the survey</button></div></section>';
+  } else if(S.stage==="done"){
+    h='<section class="panel"><span class="eyebrow">Submitted</span><h1>Thank you.</h1><p class="lede">Your answers are in. Your code is now used up, and your answers cannot be traced back to you.</p><p class="note">You can close this page.</p></section>';
+  } else {
+    var step=STEPS[S.step], pct=Math.round(S.step/(STEPS.length-1)*100), body="";
+    if(step==="about"){
+      body='<span class="eyebrow">About your role</span><h2>Which best describes your role?</h2><div class="levels">'+LEVELS.map(function(l){return '<label><input type="radio" name="level" data-level value="'+l.id+'" '+(S.level===l.id?"checked":"")+'><div><b>'+l.name+'</b><small>'+l.desc+'</small></div></label>'}).join("")+'</div>'+
+        (S.depts.length?'<label for="dept"><b>Department</b> <span class="note">(optional)</span></label><select id="dept" data-dept><option value="">Prefer not to say</option>'+S.depts.map(function(d){return '<option '+(S.dept===d?"selected":"")+'>'+esc(d)+'</option>'}).join("")+'</select>':"");
+    } else if(step.charAt(0)==="d"){
+      var d=DIMS[Number(step.slice(1))-1];
+      body='<span class="eyebrow">Part '+d.id+' of 10</span><h2>'+d.name+'</h2><div>'+QUESTIONS.filter(function(q){return q.d===d.id}).map(qHtml).join("")+'</div>';
+    } else if(step==="role"){
+      body='<span class="eyebrow">Last part</span><h2>About your role</h2><div>'+MODULES[S.level].map(qHtml).join("")+'</div><h3>Overall</h3><div>'+OUTCOME.map(qHtml).join("")+'</div>';
+      if(S.level==="L4") body+='<h3>Your prediction</h3><p class="note">Out of 100, what score do you expect employees to give each area?</p><div>'+DIMS.map(function(d){var v=S.pred[d.id]!==undefined?S.pred[d.id]:70;return '<div class="pred"><label for="pred_'+d.id+'">'+d.name+'</label><input type="range" id="pred_'+d.id+'" data-pred="'+d.id+'" min="0" max="100" step="5" value="'+v+'"><output id="predo_'+d.id+'">'+(S.pred[d.id]===undefined?"–":v)+'</output></div>'}).join("")+'</div>';
+    } else {
+      var app=applicable(), done=app.filter(function(q){return S.ans[q.id]!==undefined}).length;
+      body='<span class="eyebrow">Review</span><h2>'+done+' of '+app.length+' questions answered</h2><p class="lede">'+(done<app.length?"You can go back to answer skipped questions, or submit now.":"Everything is answered.")+' Once you submit, your answers cannot be changed.</p>'+errBox();
+    }
+    var first=S.step===0, last=S.step===STEPS.length-1, blocked=first&&!S.level;
+    h='<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'" aria-label="Survey progress"><i style="width:'+pct+'%"></i></div><section class="panel">'+body+'</section>'+
+      '<div class="nav"><button class="btn" data-act="back" '+(first?"disabled":"")+'>Back</button>'+(last?'<button class="btn primary" data-act="submit" '+(S.busy?"disabled":"")+'>'+(S.busy?"Submitting…":"Submit answers")+'</button>':'<button class="btn primary" id="next" data-act="next" '+(blocked?"disabled":"")+'>Next</button>')+'</div>';
+  }
+  $("#app").innerHTML=h;
+}
+function toTop(){window.scrollTo(0,0)}
+function check(){
+  var c=$("#code").value.trim(); S.code=c; if(!c){S.err=ERR.unknown;render();return}
+  S.busy=true;S.err="";render();
+  call({action:"check",code:c}).then(function(r){
+    S.busy=false;
+    if(r&&r.ok&&r.q&&r.q.dims){loadQ(r.q);S.org=r.org||"";S.depts=Array.isArray(r.depts)?r.depts:[];S.stage="consent";}
+    else if(r&&r.ok){S.err=ERR.server;}
+    else S.err=ERR[(r&&r.error)]||ERR.server;
+    render();toTop();
+  });
+}
+function submit(){
+  var a={};applicable().forEach(function(q){if(S.ans[q.id]!==undefined)a[q.id]=S.ans[q.id]});
+  var resp={level:S.level,dept:S.dept,a:a};
+  if(S.level==="L4"&&Object.keys(S.pred).length===10)resp.pred=S.pred;
+  S.busy=true;S.err="";render();
+  call({action:"submit",code:S.code,response:resp}).then(function(r){
+    S.busy=false;
+    if(r&&r.ok){S.stage="done";S.ans={};S.pred={};S.code="";}
+    else S.err=ERR[(r&&r.error)]||ERR.server;
+    render();toTop();
+  });
+}
+document.addEventListener("click",function(e){
+  var b=e.target.closest("button[data-act]");if(!b)return;
+  var a=b.dataset.act;
+  if(a==="check")check();
+  else if(a==="restart"){S.stage="code";S.consent=false;render();}
+  else if(a==="agree"){S.stage="survey";S.step=0;render();toTop();}
+  else if(a==="next"){if(S.step<STEPS.length-1){S.step++;render();toTop();}}
+  else if(a==="back"){if(S.step>0){S.step--;S.err="";render();toTop();}}
+  else if(a==="submit")submit();
+});
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.id==="code"){e.preventDefault();check();}});
+document.addEventListener("change",function(e){
+  var t=e.target;
+  if(t.dataset.q){var q=applicable().filter(function(x){return x.id===t.dataset.q})[0];if(!q)return;S.ans[q.id]=(t.value==="T"||t.value==="F"||t.value==="N")?t.value:Number(t.value);}
+  else if(t.hasAttribute("data-level")){if(S.level&&S.level!==t.value){MODULES[S.level].forEach(function(q){delete S.ans[q.id]});S.pred={};}S.level=t.value;var n=$("#next");if(n)n.disabled=false;}
+  else if(t.hasAttribute("data-dept"))S.dept=t.value;
+  else if(t.id==="consent"){S.consent=t.checked;var b=document.querySelector('[data-act="agree"]');if(b)b.disabled=!S.consent;}
+});
+document.addEventListener("input",function(e){var t=e.target;if(t.dataset.pred){S.pred[t.dataset.pred]=Number(t.value);var o=$("#predo_"+t.dataset.pred);if(o)o.textContent=t.value;}});
+window.addEventListener("beforeunload",function(e){if(S.stage==="survey"&&Object.keys(S.ans).length){e.preventDefault();e.returnValue="";}});
+render();
+</script>
+</body>
+</html>
